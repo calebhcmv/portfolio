@@ -6,9 +6,24 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-border">
-  <Container class="grid-editorial gap-y-sm py-lg">
-    <p class="type-nav col-span-4 m-0 md:col-span-4 lg:col-span-8">{profile.name}</p>
-    <p class="type-meta col-span-4 m-0 text-tertiary md:col-span-4 md:text-right lg:col-span-8">
+  <Container class="grid-editorial gap-y-lg py-lg">
+    <p class="type-nav col-span-4 m-0 md:col-span-2 lg:col-span-4">
+      <a href="/" class="link-editorial">{profile.name}</a>
+    </p>
+    <nav aria-label="Disciplines" class="col-span-4 md:col-span-4 lg:col-span-8">
+      <ul class="type-nav m-0 flex list-none flex-col gap-2xs p-0 lg:flex-row lg:gap-lg">
+        {
+          profile.disciplines.map((d) => (
+            <li>
+              <a href={d.href} class="link-editorial text-secondary hover:text-primary focus-visible:text-primary">
+                {d.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <p class="type-meta col-span-4 m-0 text-tertiary md:col-span-2 md:text-right lg:col-span-4">
       © {year} {profile.name}
     </p>
   </Container>

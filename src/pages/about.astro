@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/layout/Container.astro';
+import PageIntro from '../components/layout/PageIntro.astro';
+import Eyebrow from '../components/typography/Eyebrow.astro';
+import { profile } from '../content/profile';
+---
+
+<BaseLayout title={`About — ${profile.name}`} description={profile.about}>
+  <PageIntro eyebrow="About" title={profile.name} intro={profile.about} />
+
+  {
+    profile.bio.length > 0 && (
+      <section aria-labelledby="bio-title" class="pb-section">
+        <Container class="grid-editorial gap-y-md">
+          <Eyebrow as="h2" id="bio-title" class="col-span-4 md:col-span-2 lg:col-span-4">
+            Background
+          </Eyebrow>
+          <div class="col-span-4 flex max-w-[60ch] flex-col gap-md md:col-span-6 lg:col-span-8">
+            {profile.bio.map((p) => (
+              <p class="m-0">{p}</p>
+            ))}
+          </div>
+        </Container>
+      </section>
+    )
+  }
+
+  <section aria-labelledby="areas-title" class="pb-section">
+    <Container>
+      <div class="grid-editorial mb-xl">
+        <Eyebrow as="h2" id="areas-title" class="col-span-full">Areas of work</Eyebrow>
+      </div>
+      <ol class="m-0 list-none border-t border-border p-0">
+        {
+          profile.disciplines.map((d, i) => (
+            <li class="grid-editorial items-baseline gap-y-xs border-b border-border py-lg lg:py-xl">
+              <span class="type-meta col-span-1 text-tertiary">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="type-h3 col-span-3 m-0 md:col-span-4 lg:col-span-7">
+                <a href={d.href} class="link-editorial">{d.title}</a>
+              </h3>
+              <p class="col-span-3 col-start-2 m-0 text-secondary md:col-span-3 md:col-start-auto lg:col-span-8">
+                {d.summary}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </Container>
+  </section>
+</BaseLayout>

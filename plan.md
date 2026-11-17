@@ -197,29 +197,29 @@ A lista é indicativa: **não criar componentes ou pastas vazias apenas para sat
 
 ### F2.1 — Arquitetura e páginas
 
-- [ ] Implementar `/ai` com projetos/experimentos e contexto verificável.
-- [ ] Implementar `/development` para software e Salesforce, sem afirmar competências não comprovadas.
-- [ ] Implementar `/business` para marketing, vendas e growth com histórico e resultados documentáveis.
-- [ ] Implementar `/about` com narrativa profissional consistente e informações validadas.
-- [ ] Implementar `/contact` com meios de contato autorizados.
-- [ ] Ajustar navegação para incluir **somente** rotas concluídas.
-- [ ] Manter design coerente entre todas as rotas, sem templates visuais distintos por área.
+- [-] Implementar `/ai` com projetos/experimentos e contexto verificável. *(rota e estrutura prontas; aguardando projetos reais)*
+- [-] Implementar `/development` para software e Salesforce, sem afirmar competências não comprovadas. *(rota pronta; Salesforce omitido até haver evidência)*
+- [-] Implementar `/business` para marketing, vendas e growth com histórico e resultados documentáveis. *(rota pronta; aguardando conteúdo)*
+- [-] Implementar `/about` com narrativa profissional consistente e informações validadas. *(rota pronta; `profile.bio` vazio até haver informações confirmadas)*
+- [-] Implementar `/contact` com meios de contato autorizados. *(rota pronta; nenhum contato confirmado — estado vazio)*
+- [x] Ajustar navegação para incluir **somente** rotas concluídas.
+- [x] Manter design coerente entre todas as rotas, sem templates visuais distintos por área.
 
 ### F2.2 — Estudos de caso
 
-- [ ] Definir schema de projeto local e tipado: título, área, categoria (profissional/pessoal/experimento/estudo), resumo, papel, evidências, links e conteúdo.
-- [ ] Criar `/projects/[slug]` com **`getStaticPaths()`** apenas para casos reais cadastrados.
-- [ ] Estruturar cada case em **contexto → papel → processo → evidência/resultado → links**.
+- [x] Definir schema de projeto local e tipado: título, área, categoria (profissional/pessoal/experimento/estudo), resumo, papel, evidências, links e conteúdo.
+- [x] Criar `/projects/[slug]` com **`getStaticPaths()`** apenas para casos reais cadastrados. *(testado com fixture temporária, removida antes do commit)*
+- [x] Estruturar cada case em **contexto → papel → processo → evidência/resultado → links**.
 - [ ] Conferir que projetos sem métricas reais não exibam números estimados como fatos.
 - [ ] Verificar que toda URL de projeto/demonstração funcione e que a autoria esteja correta.
 - [ ] Incluir imagens/prints de autoria própria ou com direitos de uso, otimizados quando necessário.
 
 ### Gate F2
 
-- [ ] Rotas planejadas têm conteúdo útil e não são páginas vazias.
-- [ ] A navegação funciona inclusive acessando as rotas diretamente.
-- [ ] Não existem placeholders enganosos, experiências inventadas ou links internos quebrados.
-- [ ] Build estático inclui todas as rotas realmente implementadas.
+- [-] Rotas planejadas têm conteúdo útil e não são páginas vazias. *(bloqueado: falta conteúdo real — projetos, bio, contatos)*
+- [x] A navegação funciona inclusive acessando as rotas diretamente. *(validado em `astro preview`; falta validar no Cloudflare Pages)*
+- [x] Não existem placeholders enganosos, experiências inventadas ou links internos quebrados.
+- [x] Build estático inclui todas as rotas realmente implementadas.
 
 ---
 
@@ -324,12 +324,13 @@ Uma tarefa ou fase só pode ser marcada como concluída quando todos os itens re
 
 ## 9. Registro de progresso — atualizar ao final de cada sessão
 
-> **Estado atual:** F0 e F1 implementadas e validadas localmente em 2026-11-17 (ver tabela). Aguardando revisão visual do proprietário antes da F2.
+> **Estado atual:** F0 e F1 validadas; F2 com estrutura completa e validada, **gate bloqueado por falta de conteúdo real** (projetos, bio, contatos).
 
 | Data | Fase/tarefa | Arquivos modificados | Validação realizada | Status/bloqueio |
 | --- | --- | --- | --- | --- |
 | 2026-11-16 | Criação do plano | `plan.md` | Revisão de consistência com README, rules, initial e JSON | Planejado; sem implementação |
 | 2026-11-17 | F0 + F1 — fundação Astro/TS/Tailwind 4 e homepage | `package.json`, `astro.config.mjs`, `tsconfig.json`, `.node-version`, `.gitignore`, `docs/design-system.json`, `src/**` | `astro check` 0 erros; `npm run build` → `dist/index.html`; `astro preview` + Playwright/Chromium em 360, 390, 768, 1024, 1440, 1920 e 1024×500: sem overflow horizontal, foco visível via Tab, links só para âncoras existentes | Concluído; pendentes: fontes Söhne licenciadas (fallback de sistema em uso), copy final, projetos e contatos reais |
+| 2026-11-17 | F2 — rotas internas e template de case | `astro.config.mjs` (build.format file), `src/content/*`, `src/layouts/DisciplineLayout.astro`, `src/components/layout/{PageIntro,SiteHeader,SiteFooter}.astro`, `src/components/projects/ProjectIndex.astro`, `src/pages/{ai,development,business,about,contact,index}.astro`, `src/pages/projects/[slug].astro` | `astro check` 0 erros; `npm run build` gera 6 rotas; Playwright em 6 rotas × 360/390/768/1024/1440/1920: sem overflow, 1 h1 por página, 48 links internos sem quebra; `/projects/[slug]` testado com fixture temporária (removida) | Estrutura concluída; gate bloqueado por falta de conteúdo real |
 
 ### Modelo de atualização do agente
 

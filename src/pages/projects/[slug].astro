@@ -1,0 +1,97 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/layout/Container.astro';
+import PageIntro from '../../components/layout/PageIntro.astro';
+import Eyebrow from '../../components/typography/Eyebrow.astro';
+import { getDiscipline, profile } from '../../content/profile';
+import { projects, kindLabels, statusLabels, type Project } from '../../content/projects';
+
+// Gera rotas somente para projetos reais cadastrados em src/content/projects.ts.
+export const getStaticPaths = (() =>
+  projects.map((project) => ({ params: { slug: project.slug }, props: { project } }))) satisfies GetStaticPaths;
+
+type Props = { project: Project };
+
+const { project } = Astro.props;
+const discipline = getDiscipline(project.category);
+
+const facts = [
+  { label: 'Discipline', value: discipline.title, href: discipline.href },
+  { label: 'Type', value: kindLabels[project.kind] },
+  project.role && { label: 'Role', value: project.role },
+  project.year && { label: 'Year', value: String(project.year) },
+  project.status && { label: 'Status', value: statusLabels[project.status] },
+].filter(Boolean) as { label: string; value: string; href?: string }[];
+
+const sections = [
+  { id: 'context', title: 'Context', body: project.context },
+  { id: 'process', title: 'Process', body: project.process },
+  { id: 'evidence', title: 'Evidence & outcome', body: project.evidence },
+].filter((s) => s.body && s.body.length > 0) as { id: string; title: string; body: string[] }[];
+---
+
+<BaseLayout title={`${project.title} — ${profile.name}`} description={project.summary}>
+  <PageIntro eyebrow={discipline.title} title={project.title} intro={project.summary}>
+    <dl class="col-span-full m-0 mt-xl grid-editorial gap-y-md border-t border-border pt-md">
+      {
+        facts.map((f) => (
+          <div class="col-span-2 md:col-span-2 lg:col-span-3">
+            <dt class="type-label text-tertiary">{f.label}</dt>
+            <dd class="type-nav m-0 mt-2xs">
+              {f.href ? <a href={f.href} class="link-editorial">{f.value}</a> : f.value}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </PageIntro>
+
+  {
+    sections.map((s) => (
+      <section aria-labelledby={s.id} class="pb-4xl">
+        <Container>
+          <div class="grid-editorial gap-y-md border-t border-border pt-lg">
+          <Eyebrow as="h2" id={s.id} class="col-span-4 md:col-span-2 lg:col-span-4">
+            {s.title}
+          </Eyebrow>
+          <div class="col-span-4 flex max-w-[60ch] flex-col gap-md md:col-span-6 lg:col-span-8">
+            {s.body.map((p) => (
+              <p class="m-0">{p}</p>
+            ))}
+          </div>
+          </div>
+        </Container>
+      </section>
+    ))
+  }
+
+  {
+    project.links && project.links.length > 0 && (
+      <section aria-labelledby="links" class="pb-section">
+        <Container>
+          <div class="grid-editorial gap-y-md border-t border-border pt-lg">
+          <Eyebrow as="h2" id="links" class="col-span-4 md:col-span-2 lg:col-span-4">
+            Links
+          </Eyebrow>
+          <ul class="type-h3 col-span-4 m-0 flex list-none flex-col gap-xs p-0 md:col-span-6 lg:col-span-8">
+            {project.links.map((l) => (
+              <li>
+                <a href={l.href} class="link-editorial">{l.label}</a>
+              </li>
+            ))}
+          </ul>
+          </div>
+        </Container>
+      </section>
+    )
+  }
+
+  <nav aria-label="Back" class="pb-section">
+    <Container>
+      <a href={discipline.href} class="type-nav link-editorial text-secondary hover:text-primary focus-visible:text-primary">
+        ← All {discipline.title} projects
+      </a>
+    </Container>
+  </nav>
+</BaseLayout>

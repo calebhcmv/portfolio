@@ -39,7 +39,10 @@ const featured = projects.filter((p) => p.featured ?? true);
         <Eyebrow index="01" class="col-span-4 md:col-span-2 lg:col-span-4">Index</Eyebrow>
         <h2 id="work-title" class="type-h2 col-span-4 m-0 md:col-span-6 lg:col-span-12">Selected Work</h2>
       </div>
-      <ProjectIndex projects={featured} />
+      <ProjectIndex
+        projects={featured}
+        empty="Selected work is being documented. Case studies will appear here as each project is ready to be shown with its context, process and evidence."
+      />
     </Container>
   </section>
 
@@ -57,7 +60,9 @@ const featured = projects.filter((p) => p.featured ?? true);
           profile.disciplines.map((d, i) => (
             <li class="grid-editorial items-baseline gap-y-xs border-b border-border py-lg lg:py-xl">
               <span class="type-meta col-span-1 text-tertiary">{String(i + 1).padStart(2, '0')}</span>
-              <h3 class="type-h3 col-span-3 m-0 md:col-span-4 lg:col-span-7">{d.title}</h3>
+              <h3 class="type-h3 col-span-3 m-0 md:col-span-4 lg:col-span-7">
+                <a href={d.href} class="link-editorial">{d.title}</a>
+              </h3>
               <p class="col-span-3 col-start-2 m-0 text-secondary md:col-span-3 md:col-start-auto lg:col-span-8">
                 {d.summary}
               </p>
@@ -75,6 +80,9 @@ const featured = projects.filter((p) => p.featured ?? true);
       <p class="type-h3 col-span-4 m-0 max-w-[32ch] md:col-span-6 lg:col-span-10">
         {profile.about}
       </p>
+      <p class="type-nav col-span-4 m-0 md:col-span-6 md:col-start-3 lg:col-span-10 lg:col-start-5">
+        <a href="/about" class="link-editorial text-secondary hover:text-primary focus-visible:text-primary">More about {profile.name} →</a>
+      </p>
     </Container>
   </section>
 
@@ -82,23 +90,9 @@ const featured = projects.filter((p) => p.featured ?? true);
   <section id="contact" aria-labelledby="contact-title" class="pb-section">
     <Container class="grid-editorial gap-y-md">
       <Eyebrow as="h2" id="contact-title" index="04" class="col-span-4 md:col-span-2 lg:col-span-4">Contact</Eyebrow>
-      {
-        profile.contact.length > 0 ? (
-          <ul class="type-h3 col-span-4 m-0 flex list-none flex-col gap-xs p-0 md:col-span-6 lg:col-span-10">
-            {profile.contact.map((c) => (
-              <li>
-                <a href={c.href} class="link-editorial">
-                  {c.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="col-span-4 m-0 max-w-[40ch] text-secondary md:col-span-6 lg:col-span-8">
-            Contact details will be listed here once confirmed.
-          </p>
-        )
-      }
+      <p class="type-h3 col-span-4 m-0 md:col-span-6 lg:col-span-10">
+        <a href="/contact" class="link-editorial">Get in touch →</a>
+      </p>
     </Container>
   </section>
 </BaseLayout>

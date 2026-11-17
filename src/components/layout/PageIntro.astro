@@ -1,0 +1,27 @@
+---
+import Container from './Container.astro';
+import Eyebrow from '../typography/Eyebrow.astro';
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+};
+
+const { eyebrow, title, intro } = Astro.props;
+---
+
+<section aria-labelledby="page-title" class="pb-4xl pt-4xl lg:pb-5xl lg:pt-5xl">
+  <Container class="grid-editorial gap-y-xl">
+    <Eyebrow class="col-span-full">{eyebrow}</Eyebrow>
+    <h1 id="page-title" class="type-h1 col-span-full m-0 max-w-[16ch]">{title}</h1>
+    {
+      intro && (
+        <p class="type-h3 col-span-4 m-0 max-w-[32ch] text-secondary md:col-span-6 lg:col-span-10 lg:col-start-5">
+          {intro}
+        </p>
+      )
+    }
+    <slot />
+  </Container>
+</section>

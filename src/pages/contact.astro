@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/layout/Container.astro';
+import PageIntro from '../components/layout/PageIntro.astro';
+import { profile } from '../content/profile';
+---
+
+<BaseLayout title={`Contact — ${profile.name}`} description={`How to get in touch with ${profile.name}.`}>
+  <PageIntro eyebrow="Contact" title="Get in touch" />
+
+  <section aria-label="Contact channels" class="pb-section">
+    <Container>
+      {
+        profile.contact.length > 0 ? (
+          <ul class="m-0 list-none border-t border-border p-0">
+            {profile.contact.map((c) => (
+              <li class="grid-editorial items-baseline gap-y-xs border-b border-border py-lg">
+                <span class="type-label col-span-4 text-secondary md:col-span-2 lg:col-span-4">{c.label}</span>
+                <a href={c.href} class="type-h3 link-editorial col-span-4 break-words md:col-span-6 lg:col-span-12">
+                  {c.display}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div class="grid-editorial border-y border-border py-xl">
+            <span class="type-meta col-span-1 text-tertiary" aria-hidden="true">00</span>
+            <p class="col-span-3 m-0 max-w-[40ch] text-secondary md:col-span-6 lg:col-span-8">
+              Contact details will be listed here once confirmed.
+            </p>
+          </div>
+        )
+      }
+    </Container>
+  </section>
+</BaseLayout>
