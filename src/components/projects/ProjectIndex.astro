@@ -1,0 +1,48 @@
+---
+import { categoryLabels, type Project } from '../../content/projects';
+
+type Props = {
+  projects: Project[];
+};
+
+const { projects } = Astro.props;
+---
+
+{
+  projects.length > 0 ? (
+    <ol class="m-0 list-none border-t border-border p-0">
+      {projects.map((project, i) => {
+        const primaryLink = project.links?.[0];
+        return (
+          <li class="grid-editorial items-baseline gap-y-xs border-b border-border py-lg">
+            <span class="type-meta col-span-1 text-tertiary">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="type-h3 col-span-3 m-0 md:col-span-4 lg:col-span-7">
+              {primaryLink ? (
+                <a href={primaryLink.href} class="link-editorial">
+                  {project.title}
+                </a>
+              ) : (
+                project.title
+              )}
+            </h3>
+            <p class="col-span-3 col-start-2 m-0 text-secondary md:col-span-3 md:col-start-auto lg:col-span-5">
+              {project.summary}
+            </p>
+            <p class="type-meta col-span-3 col-start-2 m-0 text-tertiary md:col-span-7 md:col-start-2 lg:col-span-3 lg:col-start-auto lg:text-right">
+              {categoryLabels[project.category]}
+              {project.year && <> · {project.year}</>}
+            </p>
+          </li>
+        );
+      })}
+    </ol>
+  ) : (
+    <div class="grid-editorial border-y border-border py-xl">
+      <span class="type-meta col-span-1 text-tertiary" aria-hidden="true">00</span>
+      <p class="col-span-3 m-0 max-w-[40ch] text-secondary md:col-span-6 lg:col-span-8">
+        Selected work is being documented. Case studies will appear here as each project is ready to be
+        shown with its context, process and evidence.
+      </p>
+    </div>
+  )
+}

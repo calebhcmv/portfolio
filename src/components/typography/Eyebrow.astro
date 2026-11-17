@@ -1,0 +1,15 @@
+---
+type Props = {
+  as?: 'p' | 'span' | 'h2' | 'h3';
+  index?: string;
+  class?: string;
+  id?: string;
+};
+
+const { as: Tag = 'p', index, class: className, id } = Astro.props;
+---
+
+<Tag id={id} class:list={['type-label text-secondary flex gap-sm', className]}>
+  {index && <span class="type-meta text-tertiary" aria-hidden="true">{index}</span>}
+  <span><slot /></span>
+</Tag>

@@ -99,24 +99,24 @@ Nenhuma dessas pendências autoriza a IA a criar informações biográficas ou a
 
 ### F0.1 — Inspeção e setup
 
-- [ ] Inspecionar a pasta atual e identificar arquivos existentes; **não sobrescrever** alterações do usuário.
-- [ ] Verificar presença de `README.md`, `rules.md`, `initial.md` e deste `plan.md`.
-- [ ] Garantir `docs/design-system.json` usando o **JSON adaptado** (`design-system-portfolio-v1.json`); não importar o JSON de extração técnica da IVERSON como tokens finais.
-- [ ] Inicializar **Astro + TypeScript** no diretório correto somente se o projeto ainda não existir.
-- [ ] Integrar **Tailwind CSS 4** pelo método suportado pelo Astro, sem padrões de Tailwind 3.
-- [ ] Configurar `output: 'static'`, `.node-version` com `22` e `package-lock.json` versionável.
-- [ ] Conferir scripts `dev`, `build`, `preview` e verificação de tipos quando configurada.
-- [ ] Confirmar que não há Next.js, SSR, React obrigatório nem `@astrojs/cloudflare`.
+- [x] Inspecionar a pasta atual e identificar arquivos existentes; **não sobrescrever** alterações do usuário.
+- [x] Verificar presença de `README.md`, `rules.md`, `initial.md` e deste `plan.md`.
+- [x] Garantir `docs/design-system.json` usando o **JSON adaptado** (`design-system-portfolio-v1.json`); não importar o JSON de extração técnica da IVERSON como tokens finais.
+- [x] Inicializar **Astro + TypeScript** no diretório correto somente se o projeto ainda não existir.
+- [x] Integrar **Tailwind CSS 4** pelo método suportado pelo Astro, sem padrões de Tailwind 3.
+- [x] Configurar `output: 'static'`, `.node-version` com `22` e `package-lock.json` versionável.
+- [x] Conferir scripts `dev`, `build`, `preview` e verificação de tipos quando configurada.
+- [x] Confirmar que não há Next.js, SSR, React obrigatório nem `@astrojs/cloudflare`.
 
 ### F0.2 — Tokens e fundação de UI
 
-- [ ] Centralizar tokens em `src/styles/tokens.css`, preservando valores aprovados.
-- [ ] Criar `src/styles/fonts.css` e declarar **somente** fontes que estiverem licenciadas/disponíveis; caso contrário usar fallbacks temporários.
-- [ ] Criar `src/styles/global.css` com Tailwind 4, reset/base e importações consistentes.
-- [ ] Criar `src/layouts/BaseLayout.astro` com idioma, metadados básicos e CSS global importado uma vez.
-- [ ] Criar `SiteHeader.astro`, `SiteFooter.astro`, `Container.astro` e os componentes tipográficos **que tenham uso real**.
-- [ ] Garantir contraste adequado, foco visível, HTML semântico e uma única tag `h1` por página.
-- [ ] Criar `src/content/profile.ts` e `src/content/projects.ts` com tipos claros e **sem dados fictícios**.
+- [x] Centralizar tokens em `src/styles/tokens.css`, preservando valores aprovados.
+- [x] Criar `src/styles/fonts.css` e declarar **somente** fontes que estiverem licenciadas/disponíveis; caso contrário usar fallbacks temporários.
+- [x] Criar `src/styles/global.css` com Tailwind 4, reset/base e importações consistentes.
+- [x] Criar `src/layouts/BaseLayout.astro` com idioma, metadados básicos e CSS global importado uma vez.
+- [x] Criar `SiteHeader.astro`, `SiteFooter.astro`, `Container.astro` e os componentes tipográficos **que tenham uso real**.
+- [x] Garantir contraste adequado, foco visível, HTML semântico e uma única tag `h1` por página.
+- [x] Criar `src/content/profile.ts` e `src/content/projects.ts` com tipos claros e **sem dados fictícios**.
 
 ### Entregáveis F0
 
@@ -137,11 +137,11 @@ A lista é indicativa: **não criar componentes ou pastas vazias apenas para sat
 
 ### Validação e gate F0
 
-- [ ] `npm run build` executado com sucesso.
-- [ ] `dist/index.html` gerado.
-- [ ] Background, textos, tipografia/fallback e grid usam tokens centralizados.
-- [ ] Nenhum arquivo proprietário da IVERSON ou fonte sem licença entrou no projeto.
-- [ ] Relatório do agente registra arquivos, comandos realmente executados e bloqueios.
+- [x] `npm run build` executado com sucesso.
+- [x] `dist/index.html` gerado.
+- [x] Background, textos, tipografia/fallback e grid usam tokens centralizados.
+- [x] Nenhum arquivo proprietário da IVERSON ou fonte sem licença entrou no projeto.
+- [x] Relatório do agente registra arquivos, comandos realmente executados e bloqueios.
 
 **Gate:** a aplicação estática compila e a fundação visual é confiável. A F1 pode começar durante a mesma primeira execução se a F0 estiver consistente.
 
@@ -153,23 +153,23 @@ A lista é indicativa: **não criar componentes ou pastas vazias apenas para sat
 
 ### F1.1 — Estrutura e hierarquia
 
-- [ ] Implementar header tipográfico com marca pessoal discreta e navegação **somente para destinos existentes**.
-- [ ] Implementar hero monumental com **CALEB LOPES** e quebra controlada em desktop e mobile.
-- [ ] Incluir posicionamento curto e provisório, marcando-o para revisão de copy.
-- [ ] Implementar **Selected Work** como lista editorial com números/linhas/metadados **apenas se houver projetos reais**.
-- [ ] Se não houver projetos cadastrados, ocultar a listagem ou mostrar estado vazio intencional; **não inventar cases**.
-- [ ] Apresentar as três áreas: **Artificial Intelligence**, **Development** e **Business & Growth**.
-- [ ] Para rotas futuras não criadas, apontar para seções já existentes ou mostrar texto sem link. **Zero links quebrados**.
-- [ ] Incluir apresentação pessoal concisa com informações confirmadas e rodapé com links reais ou sem links indisponíveis.
+- [x] Implementar header tipográfico com marca pessoal discreta e navegação **somente para destinos existentes**.
+- [x] Implementar hero monumental com **CALEB LOPES** e quebra controlada em desktop e mobile.
+- [x] Incluir posicionamento curto e provisório, marcando-o para revisão de copy.
+- [x] Implementar **Selected Work** como lista editorial com números/linhas/metadados **apenas se houver projetos reais**.
+- [x] Se não houver projetos cadastrados, ocultar a listagem ou mostrar estado vazio intencional; **não inventar cases**.
+- [x] Apresentar as três áreas: **Artificial Intelligence**, **Development** e **Business & Growth**.
+- [x] Para rotas futuras não criadas, apontar para seções já existentes ou mostrar texto sem link. **Zero links quebrados**.
+- [-] (parcial: texto About provisório; nenhum contato confirmado, então sem links) Incluir apresentação pessoal concisa com informações confirmadas e rodapé com links reais ou sem links indisponíveis.
 
 ### F1.2 — Responsividade e comportamento
 
-- [ ] Verificar larguras **360, 390, 768, 1024, 1440 e 1920px** quando houver navegador disponível.
-- [ ] Tratar viewport baixo e títulos grandes sem overflow horizontal.
-- [ ] Ajustar composição especificamente no mobile, em vez de apenas reduzir o desktop.
-- [ ] Garantir navegação por teclado e toque, `focus-visible` e contraste de textos pequenos.
-- [ ] Evitar vídeos, reveals e bibliotecas de animação nesta primeira versão.
-- [ ] Conferir semanticamente headings, links, landmarks e legibilidade.
+- [x] Verificar larguras **360, 390, 768, 1024, 1440 e 1920px** quando houver navegador disponível.
+- [x] Tratar viewport baixo e títulos grandes sem overflow horizontal.
+- [x] Ajustar composição especificamente no mobile, em vez de apenas reduzir o desktop.
+- [x] Garantir navegação por teclado e toque, `focus-visible` e contraste de textos pequenos.
+- [x] Evitar vídeos, reveals e bibliotecas de animação nesta primeira versão.
+- [x] Conferir semanticamente headings, links, landmarks e legibilidade.
 
 ### Entregáveis F1
 
@@ -180,12 +180,12 @@ A lista é indicativa: **não criar componentes ou pastas vazias apenas para sat
 
 ### Validação e gate F1
 
-- [ ] `npm run build` e `npm run preview` executados quando o ambiente permitir.
-- [ ] A home é utilizável sem animações ou JS adicional.
-- [ ] Não há links mortos nem conteúdo profissional inventado.
-- [ ] Inspeção responsiva e visual registrada com **viewports realmente verificadas**.
-- [ ] Diferenças decorrentes de fonte fallback foram documentadas sem alegar fidelidade total.
-- [ ] Mudanças, testes e pendências foram relatados.
+- [x] `npm run build` e `npm run preview` executados quando o ambiente permitir.
+- [x] A home é utilizável sem animações ou JS adicional.
+- [x] Não há links mortos nem conteúdo profissional inventado.
+- [x] Inspeção responsiva e visual registrada com **viewports realmente verificadas**.
+- [x] Diferenças decorrentes de fonte fallback foram documentadas sem alegar fidelidade total.
+- [x] Mudanças, testes e pendências foram relatados.
 
 **Gate:** apresentar a homepage para revisão visual do proprietário. **Parar após F1** na execução comandada por `initial.md`.
 
@@ -324,11 +324,12 @@ Uma tarefa ou fase só pode ser marcada como concluída quando todos os itens re
 
 ## 9. Registro de progresso — atualizar ao final de cada sessão
 
-> **Estado atual:** nenhum código do portfólio foi implementado ou testado no contexto da criação deste documento. Os checkboxes permanecem abertos até execução comprovada na IDE.
+> **Estado atual:** F0 e F1 implementadas e validadas localmente em 2026-11-17 (ver tabela). Aguardando revisão visual do proprietário antes da F2.
 
 | Data | Fase/tarefa | Arquivos modificados | Validação realizada | Status/bloqueio |
 | --- | --- | --- | --- | --- |
 | 2026-11-16 | Criação do plano | `plan.md` | Revisão de consistência com README, rules, initial e JSON | Planejado; sem implementação |
+| 2026-11-17 | F0 + F1 — fundação Astro/TS/Tailwind 4 e homepage | `package.json`, `astro.config.mjs`, `tsconfig.json`, `.node-version`, `.gitignore`, `docs/design-system.json`, `src/**` | `astro check` 0 erros; `npm run build` → `dist/index.html`; `astro preview` + Playwright/Chromium em 360, 390, 768, 1024, 1440, 1920 e 1024×500: sem overflow horizontal, foco visível via Tab, links só para âncoras existentes | Concluído; pendentes: fontes Söhne licenciadas (fallback de sistema em uso), copy final, projetos e contatos reais |
 
 ### Modelo de atualização do agente
 

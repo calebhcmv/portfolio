@@ -1,0 +1,29 @@
+---
+type Props = {
+  /** Cada item é renderizado em uma linha própria (quebra controlada). */
+  lines: string[];
+  level?: 'display' | 'h1' | 'h2';
+  as?: 'h1' | 'h2' | 'p';
+  class?: string;
+  id?: string;
+};
+
+const { lines, level = 'display', as: Tag = 'h1', class: className, id } = Astro.props;
+---
+
+<Tag id={id} class:list={[`type-${level}`, 'display-heading', className]}>
+  {lines.map((line, i) => (
+    <Fragment>
+      <span class="block">{line}</span>
+      {i < lines.length - 1 && ' '}
+    </Fragment>
+  ))}
+</Tag>
+
+<style>
+  .display-heading {
+    /* Evita corte de glifos com line-height < 1 e tracking negativo. */
+    padding-block: 0.04em;
+    overflow-wrap: anywhere;
+  }
+</style>

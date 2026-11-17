@@ -1,0 +1,51 @@
+/*
+ * Tipografia aprovada: Söhne Breit (display/H1/H2) + Söhne (texto/navegação).
+ *
+ * TEMPORÁRIO — os arquivos licenciados de Söhne / Söhne Breit ainda NÃO estão
+ * no projeto. Até lá, o navegador usa os fallbacks de sistema abaixo
+ * (definidos em docs/design-system.json: "Arial Black, Arial, sans-serif").
+ * O resultado visual atual NÃO representa as fontes aprovadas.
+ *
+ * Para ativar as fontes licenciadas:
+ *   1. Colocar os arquivos .woff2 licenciados em public/fonts/.
+ *   2. Descomentar e ajustar os @font-face abaixo (um por peso disponível,
+ *      sem pesos sintéticos).
+ *   3. Remover este aviso de "temporário".
+ */
+
+/*
+@font-face {
+  font-family: "Söhne Breit";
+  src: url("/fonts/soehne-breit-extrafett.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Söhne Breit";
+  src: url("/fonts/soehne-breit-dreiviertelfett.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Söhne";
+  src: url("/fonts/soehne-buch.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Söhne";
+  src: url("/fonts/soehne-kraftig.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+:root {
+  --font-display: "Söhne Breit", "Arial Black", Arial, sans-serif;
+  --font-body: "Söhne", Arial, Helvetica, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+}

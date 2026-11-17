@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/layout/Container.astro';
+import DisplayHeading from '../components/typography/DisplayHeading.astro';
+import Eyebrow from '../components/typography/Eyebrow.astro';
+import ProjectIndex from '../components/projects/ProjectIndex.astro';
+import { profile } from '../content/profile';
+import { projects } from '../content/projects';
+
+const featured = projects.filter((p) => p.featured ?? true);
+---
+
+<BaseLayout title={`${profile.name} — Portfolio`} description={profile.positioning}>
+  <!-- Hero -->
+  <section aria-labelledby="hero-title" class="hero flex flex-col">
+    <Container class="grid-editorial flex-1 content-between gap-y-3xl pb-xl pt-4xl lg:pt-3xl">
+      <ul
+        class="type-label col-span-4 m-0 flex list-none flex-col gap-2xs p-0 text-secondary md:col-span-4 md:col-start-5 lg:col-span-4 lg:col-start-13"
+        aria-label="Areas of work"
+      >
+        {profile.disciplines.map((d) => <li>{d.title}</li>)}
+      </ul>
+
+      <div class="col-span-full self-end">
+        <DisplayHeading id="hero-title" lines={profile.nameLines} />
+        <div class="grid-editorial mt-xl border-t border-border pt-md lg:mt-2xl">
+          <p class="type-h3 col-span-4 m-0 max-w-[24ch] text-primary md:col-span-6 lg:col-span-8">
+            {profile.positioning}
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Selected Work -->
+  <section id="work" aria-labelledby="work-title" class="py-section">
+    <Container>
+      <div class="grid-editorial mb-2xl gap-y-md lg:mb-3xl">
+        <Eyebrow index="01" class="col-span-4 md:col-span-2 lg:col-span-4">Index</Eyebrow>
+        <h2 id="work-title" class="type-h2 col-span-4 m-0 md:col-span-6 lg:col-span-12">Selected Work</h2>
+      </div>
+      <ProjectIndex projects={featured} />
+    </Container>
+  </section>
+
+  <!-- Disciplines -->
+  <section id="disciplines" aria-labelledby="disciplines-title" class="pb-section">
+    <Container>
+      <div class="grid-editorial mb-2xl gap-y-md lg:mb-3xl">
+        <Eyebrow index="02" class="col-span-4 md:col-span-2 lg:col-span-4">Disciplines</Eyebrow>
+        <h2 id="disciplines-title" class="type-h2 col-span-4 m-0 md:col-span-6 lg:col-span-12">
+          Three areas, one practice
+        </h2>
+      </div>
+      <ol class="m-0 list-none border-t border-border p-0">
+        {
+          profile.disciplines.map((d, i) => (
+            <li class="grid-editorial items-baseline gap-y-xs border-b border-border py-lg lg:py-xl">
+              <span class="type-meta col-span-1 text-tertiary">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="type-h3 col-span-3 m-0 md:col-span-4 lg:col-span-7">{d.title}</h3>
+              <p class="col-span-3 col-start-2 m-0 text-secondary md:col-span-3 md:col-start-auto lg:col-span-8">
+                {d.summary}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </Container>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-labelledby="about-title" class="pb-section">
+    <Container class="grid-editorial gap-y-md">
+      <Eyebrow as="h2" id="about-title" index="03" class="col-span-4 md:col-span-2 lg:col-span-4">About</Eyebrow>
+      <p class="type-h3 col-span-4 m-0 max-w-[32ch] md:col-span-6 lg:col-span-10">
+        {profile.about}
+      </p>
+    </Container>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contact-title" class="pb-section">
+    <Container class="grid-editorial gap-y-md">
+      <Eyebrow as="h2" id="contact-title" index="04" class="col-span-4 md:col-span-2 lg:col-span-4">Contact</Eyebrow>
+      {
+        profile.contact.length > 0 ? (
+          <ul class="type-h3 col-span-4 m-0 flex list-none flex-col gap-xs p-0 md:col-span-6 lg:col-span-10">
+            {profile.contact.map((c) => (
+              <li>
+                <a href={c.href} class="link-editorial">
+                  {c.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="col-span-4 m-0 max-w-[40ch] text-secondary md:col-span-6 lg:col-span-8">
+            Contact details will be listed here once confirmed.
+          </p>
+        )
+      }
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    min-height: var(--hero-min-height);
+  }
+</style>

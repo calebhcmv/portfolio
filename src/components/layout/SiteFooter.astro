@@ -1,0 +1,15 @@
+---
+import { profile } from '../../content/profile';
+import Container from './Container.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border">
+  <Container class="grid-editorial gap-y-sm py-lg">
+    <p class="type-nav col-span-4 m-0 md:col-span-4 lg:col-span-8">{profile.name}</p>
+    <p class="type-meta col-span-4 m-0 text-tertiary md:col-span-4 md:text-right lg:col-span-8">
+      © {year} {profile.name}
+    </p>
+  </Container>
+</footer>
